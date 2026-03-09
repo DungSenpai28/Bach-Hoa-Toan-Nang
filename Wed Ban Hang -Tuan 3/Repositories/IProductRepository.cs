@@ -1,0 +1,13 @@
+﻿using Wed_Ban_Hang__Tuan_3.Models;
+
+namespace Wed_Ban_Hang__Tuan_3.Repositories
+{
+    public interface IProductRepository
+    {
+        Task<IEnumerable<Product>> GetAllAsync();
+        Task<Product> GetByIdAsync(int id);
+        Task AddAsync(Product product);
+        Task UpdateAsync(Product product);
+        Task DeleteAsync(int id);
+    }
+}

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Category>
+
+<h2>Danh mục</h2>
+
+<form asp-action="Add" method="post">
+
+    <div class="row">
+
+        <div class="col-md-4">
+            <input name="Name" class="form-control" placeholder="Tên danh mục" />
+        </div>
+
+        <div class="col-md-4">
+            <input name="Description" class="form-control" placeholder="Mô tả" />
+        </div>
+
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success">Thêm</button>
+        </div>
+
+    </div>
+
+</form>
+
+<br />
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Mô tả</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+
+                <td>
+                    <a asp-action="Delete"
+                       asp-route-id="@item.Id"
+                       class="btn btn-danger btn-sm">
+                        Xóa
+                    </a>
+                </td>
+
+            </tr>
+        }
+
+    </tbody>
+
+</table>
