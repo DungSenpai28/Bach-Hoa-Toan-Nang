@@ -1,59 +1,56 @@
-﻿@{
-    ViewData["Title"] = "Trang chủ";
+﻿@model IEnumerable<Wed_Ban_Hang__Tuan_3.Models.Product>
+
+@{
+    ViewData["Title"] = "Home Page";
+    int numOfQuantity = 1;
 }
 
-<div class="container">
+<section class="py-2">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-    <!-- Banner -->
-    <div class="p-5 mb-4 bg-light rounded-3">
-        <div class="container-fluid py-5 text-center">
-            <h1 class="display-5 fw-bold">Chào mừng đến Web Bán Hàng Toàn Năng</h1>
-            <p class="fs-4">Chỉ Cần Là Thứ Bạn Cần Chúng Tôi Đều Không Có</p>
-            <a class="btn btn-primary btn-lg" href="/Product">Xem sản phẩm</a>
+            @foreach (var item in Model)
+            {
+                <div class="col mb-5">
+                    <div class="card h-100 gap-3" style="width: 18rem">
+                        <!-- Product image-->
+                        <img src="@item.ImageUrl" class="card-img-top" alt="..." style="height: 300px; object-fit: cover;">
+
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">@Html.DisplayFor(modelItem => item.Name)</h5>
+                                <!-- Product price-->
+                                <div class="d-flex justify-content-center">
+                                    <span>Price: </span>
+                                    <p class="mx-2 fw-bold text-danger">@item.Price.ToString("#,##0") Vnđ</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center d-flex justify-content-around">
+                                <!-- Nút Xem chi tiết -->
+                                <a class="btn btn-outline-info mt-auto"
+                                   asp-controller="Product"
+                                   asp-action="Display"
+                                   asp-route-id="@item.Id">Details</a>
+
+                                <!-- Nút Add to Cart -->
+                                <a class="btn btn-outline-dark mt-auto"
+                                   asp-controller="ShoppingCart"
+                                   asp-action="AddToCart"
+                                   asp-route-productId="@item.Id"
+                                   asp-route-quantity="@numOfQuantity">
+                                    <i class="bi-cart-fill me-1"></i> Add
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
         </div>
     </div>
-
-    <!-- Tiêu đề -->
-    <h2 class="text-center mb-4">Sản phẩm nổi bật</h2>
-
-    <div class="row">
-
-        <!-- Product 1 -->
-        <div class="col-md-4">
-            <div class="card shadow">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Laptop Gaming</h5>
-                    <p class="card-text">Laptop hiệu năng cao dành cho game thủ.</p>
-                    <a href="/Product" class="btn btn-primary">Xem chi tiết</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="col-md-4">
-            <div class="card shadow">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Điện thoại</h5>
-                    <p class="card-text">Smartphone mới nhất với nhiều tính năng.</p>
-                    <a href="/Product" class="btn btn-primary">Xem chi tiết</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="col-md-4">
-            <div class="card shadow">
-                <img src="https://via.placeholder.com/300x200" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Tai nghe</h5>
-                    <p class="card-text">Âm thanh chất lượng cao.</p>
-                    <a href="/Product" class="btn btn-primary">Xem chi tiết</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-</div>
+</section>

@@ -7,8 +7,7 @@ using Wed_Ban_Hang__Tuan_3.Repositories;
 
 namespace ProjectName.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+    
     public class ProductController : Controller
     {
         private readonly IProductRepository _productRepository;
